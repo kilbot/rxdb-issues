@@ -1,4 +1,4 @@
-import { useObservableState } from 'observable-hooks';
+import { useObservableState } from "observable-hooks";
 
 function Nested({ doc }) {
   const address = useObservableState(doc.address$, doc.address);
