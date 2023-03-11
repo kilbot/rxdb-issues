@@ -1,25 +1,24 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
+
 import './App.css';
+import { document } from './database';
+import Single from './Single';
+import Nested from './Nested';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    document.then((doc) => {
+      setData(doc);
+    });
+  }, [])
+
+
+  return data ? (
+    <Single doc={data} />
+    // <Nested doc={data} />
+  ): null;
 }
 
 export default App;
