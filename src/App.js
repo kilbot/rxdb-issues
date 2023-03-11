@@ -16,8 +16,8 @@ function App() {
 
 
   return data ? (
-    <Single doc={data} />
-    // <Nested doc={data} />
+    // <Single doc={data} />
+    <Nested doc={data} />
   ): null;
 }
 

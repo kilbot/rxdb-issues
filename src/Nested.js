@@ -1,7 +1,17 @@
-import { useObservableState } from 'observable-hooks';
+import { useEffect, useState } from 'react';
 
 function Nested({ doc }) {
-  const address = useObservableState(doc.address$, doc.address);
+  const [address, setAddress] = useState(doc.address);
+
+	useEffect(() => {
+		const sub = doc.address$.subscribe((val) => {
+			setAddress(val);
+		});
+		return () => {
+			if (sub && sub.unsubscribe) sub.unsubscribe();
+		};
+	}, [doc.address$]);
+
   return <div>{address.city}</div>;
 }
 
